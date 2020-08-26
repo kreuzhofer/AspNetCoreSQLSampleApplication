@@ -1,7 +1,13 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    if(!HttpContext.Session.Keys.Contains("sessionkey"))
+    {
+        var key = System.Security.Cryptography.RandomNumberGenerator.GetInt32(10000).ToString();
+        HttpContext.Session.SetString("sessionkey", key);
+    }
 }
 
 <div class="text-center">
